@@ -28,7 +28,7 @@ export async function getCurrentUser() {
     }
 
     return verifyToken(token);
-  } catch (error) {
+  } catch  {
     return null;
   }
 }
