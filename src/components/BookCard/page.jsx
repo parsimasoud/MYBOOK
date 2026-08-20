@@ -6,7 +6,7 @@ export default function BookCard({ book, levelId }){
     return(
         <Link href={`/books/${book.slug}`}>
         <article>
-            <img className="w-30 h-40" src={book.coverImage} alt="" />
+            <img className="w-30 h-40 rounded-lg" src={book.coverImage} alt="" />
         </article>
         </Link>
     )
