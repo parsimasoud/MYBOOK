@@ -8,6 +8,7 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmeil] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault();

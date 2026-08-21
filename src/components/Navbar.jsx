@@ -65,7 +65,7 @@ export default function Navbar() {
             Levels
           </Link>
 
-          <Link
+          {/* <Link
             href="/library"
             className={
               pathname.startsWith("/library")
@@ -74,17 +74,17 @@ export default function Navbar() {
             }
           >
             Library
-          </Link>
+          </Link> */}
 
           <Link
-            href="/search"
+            href="/signup"
             className={
-              pathname.startsWith("/search")
+              pathname.startsWith("/signup")
                 ? "text-blue-500 font-semibold"
                 : "text-gray-300 hover:text-white"
             }
           >
-            Search
+            signup
           </Link>
 
           {/* <Link
