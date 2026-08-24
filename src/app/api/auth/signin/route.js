@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 import connectDB from "../../../../lib/mongodb";
 import User from "../../../../models/User";
-import { createToken } from "../../../../lib/auth";
+import { createToken } from "../../../../lib/getCurrentUser";
 import { cookies } from "next/headers";
 
 export async function POST(request) {
