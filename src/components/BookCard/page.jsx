@@ -6,7 +6,11 @@ export default function BookCard({ book, levelId }){
     return(
         <Link href={`/books/${book.slug}`}>
         <article>
-            <img className="w-30 h-40 rounded-lg" src={book.coverImage} alt="" />
+            <div className="flex flex-col w-40 text-center">
+            <img className="w-40 h-50 rounded-lg" src={book.coverImage} alt="" />
+            <h4>{book.title}</h4>
+            </div>
+            
         </article>
         </Link>
     )

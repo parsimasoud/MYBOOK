@@ -60,15 +60,15 @@ export default async function page({params}){
     const book = books.find(book => book.slug === slug);   
 
     return(
-        <div className="flex flex-col text-center p-4 gap-4">
+        <div className="flex flex-col  items-center text-center justify-center p-4 gap-4">
           <div className="flex justify-center">
           <img className="h-96 rounded-xl shadow-lg" src={book.coverImage} alt={book.title} />
           </div>
-          <div>
+          <div className="flex flex-col w-100 text-center justify-center">
           <h1>{book.title}</h1>
           <h2>{book.author}</h2>
           <h2>chapters : {book.chaptersCount}</h2>
-          <p>{book.description}</p>
+          <p >{book.description}</p>
           <Link href={`/books/${book.slug}/read`}><button className="bg-blue-400 p-3 rounded-2xl hover:bg-blue-700 hover:scale-105">start reading</button></Link>
           </div>
           
