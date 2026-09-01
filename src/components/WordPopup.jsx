@@ -238,8 +238,8 @@ export default function WordPopup({ selectedWord, setSelectedWord }) {
                 /* =========================
                    Persian
                    ========================= */
-                <div>
-                  <p className="mb-4 text-xl">
+                <div className="flex items-center justify-center">
+                  <p className="mb-4 text-xl  ">
                     <strong>معنی:</strong>
                     <br />
 
