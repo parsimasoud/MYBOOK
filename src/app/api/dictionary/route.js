@@ -1,49 +1,86 @@
-import connectDB from "@/lib/mongodb";
-import Dictionary from "@/models/Dictionary";
 
 
-export async function GET(req) {
+import { NextResponse } from "next/server";
 
-  try {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
 
-    await connectDB();
+  const word = searchParams.get("word");
 
-
-    const { searchParams } = new URL(req.url);
-
-    const word = searchParams.get("word");
-
-
-    if (!word) {
-      return Response.json({
-        result: null
-      });
-    }
-
-
-    const dictionary = await Dictionary.findOne({
-      word: word.toLowerCase()
-    });
-
-
-    return Response.json({
-      result: dictionary
-    });
-
-
-  } catch (error) {
-
-    console.log(error);
-
-    return Response.json(
-      {
-        error: error.message
-      },
-      {
-        status: 500
-      }
+  if (!word) {
+    return NextResponse.json(
+      { error: "Word is required" },
+      { status: 400 }
     );
-
   }
 
+  try {
+    const response = await fetch(
+      `https://englishdictionaryapi.com/api/v1/words/${encodeURIComponent(
+        word
+      )}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Word not found" },
+        { status: response.status }
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Dictionary API Error:", error);
+
+    return NextResponse.json(
+      { error: "Failed to fetch dictionary API" },
+      { status: 500 }
+    );
+  }
 }
+
+
+
+
+// import { NextResponse } from "next/server";
+
+// export async function GET(request) {
+//   const { searchParams } = new URL(request.url);
+
+//   const word = searchParams.get("word");
+
+//   if (!word) {
+//     return NextResponse.json(
+//       { error: "Word is required" },
+//       { status: 400 }
+//     );
+//   }
+
+//   try {
+//     const response = await fetch(
+//       `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(
+//         word
+//       )}`
+//     );
+
+//     const data = await response.json();
+
+//     if (!response.ok) {
+//       return NextResponse.json(
+//         { error: "Word not found" },
+//         { status: response.status }
+//       );
+//     }
+
+//     return NextResponse.json(data);
+//   } catch (error) {
+//     console.error("Dictionary API Error:", error);
+
+//     return NextResponse.json(
+//       { error: "Failed to fetch dictionary API" },
+//       { status: 500 }
+//     );
+//   }
+// }
