@@ -33,12 +33,9 @@ const levels = [
 
 export default function Levels() {
   return (
-    <div className="flex justify-center items-center h-svh gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-8 max-w-7xl mx-auto">
       {levels.map((level) => (
-        <LevelCard
-          key={level.id}
-          level={level}
-        />
+        <LevelCard key={level.id} level={level} />
       ))}
     </div>
   );
